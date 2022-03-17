@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 using namespace std;
 
@@ -10,7 +10,7 @@ int main()
 	float sumI = 0, U1 = 0, U2 = 0, Ic1 = 0, Ir1 = 0, Il1 = 0, Ic2 = 0, Ir2 = 0, Il2 = 0, Pr1 = 0, Pr2 = 0, Qc1 = 0, Qc2 = 0, Ql1 = 0, Ql2 = 0, sumP = 0, sumQ = 0, S = 0;
 	const double Pi = 3.14; int n = 0;
 
-	cout << "1) Теоритеческие расчёты. 2) Multisim. 3) Практика."; cin >> n;
+	cout << "1) Теоритеческие расчёты. 2) Multisim. 3) Практика. === "; cin >> n;
 
 	switch (n) {
 	case 1: 
@@ -81,15 +81,21 @@ int main()
 		break;
 	case 2:
 		for (int f = 250; f <= 3000; f += 250) {
-			cout << "sumI = "; cin >> sumI; cout << "\n";
-			cout << "Ic1 = "; cin >> Ic1; cout << "\n";
-			cout << "Il1 = "; cin >> Il1; cout << "\n";
-			cout << "Ir1 = "; cin >> Ir1; cout << "\n";
-			cout << "U1 = "; cin >> U1; cout << "\n";
-			cout << "Ir2 = "; cin >> Ir2; cout << "\n";
-			cout << "Ic2 = "; cin >> Ic2; cout << "\n";
-			cout << "Il2 = "; cin >> Il2; cout << "\n";
-			cout << "U2 = "; cin >> U2; cout << "\n";
+			cout << "\n" << f << " Гц\n";
+			cout << "sumI = "; cin >> sumI;
+			cout << "Ic1 = "; cin >> Ic1;
+			cout << "Il1 = "; cin >> Il1;
+			cout << "Ir1 = "; cin >> Ir1;
+			cout << "U1 = "; cin >> U1;
+			cout << "Ir2 = "; cin >> Ir2;
+			cout << "Ic2 = "; cin >> Ic2;
+			cout << "Il2 = "; cin >> Il2;
+			cout << "U2 = "; cin >> U2;
+
+			Xc1 = 1 / (2 * Pi * f * C1 * pow(10, (-6)));
+			Xc2 = 1 / (2 * Pi * f * C2 * pow(10, (-6)));
+			Xl1 = 2 * Pi * f * L1;
+			Xl2 = 2 * Pi * f * L2;
 
 			Pr1 = U1 * Ir1; //мВт
 			Pr2 = U2 * Ir2;
@@ -102,7 +108,7 @@ int main()
 			sumQ = Qc1 + Qc2 + Ql1 + Ql2;
 			S = sqrt(pow(sumP, 2) + pow(sumQ, 2));
 
-			cout << "Pr1 = " << Pr1 << " мВт" << "\n";
+			cout << "\n" << "Pr1 = " << Pr1 << " мВт" << "\n";
 			cout << "Pr2 = " << Pr2 << " мВт" << "\n";
 			cout << "Qc1 = " << Qc1 << " мВт" << "\n";
 			cout << "Qc2 = " << Qc2 << " мВт" << "\n";
@@ -115,10 +121,16 @@ int main()
 		break;
 	case 3:
 		for (int f = 250; f <= 3000; f += 250) {
-			cout << "sumI = "; cin >> sumI; cout << "\n";
-			cout << "U1 = "; cin >> U1; cout << "\n";
-			cout << "U2 = "; cin >> U2; cout << "\n";
+			cout << "\n" << f << " Гц\n";
+			cout << "sumI = "; cin >> sumI;
+			cout << "U1 = "; cin >> U1;
+			cout << "U2 = "; cin >> U2;
 			
+			Xc1 = 1 / (2 * Pi * f * C1 * pow(10, (-6)));
+			Xc2 = 1 / (2 * Pi * f * C2 * pow(10, (-6)));
+			Xl1 = 2 * Pi * f * L1;
+			Xl2 = 2 * Pi * f * L2;
+
 			Ic1 = U1 / Xc1 * 1000; //мА
 			Ir1 = U1 / R1 * 1000;
 			Il1 = U1 / Xl1 * 1000;
@@ -137,7 +149,7 @@ int main()
 			sumQ = Qc1 + Qc2 + Ql1 + Ql2;
 			S = sqrt(pow(sumP, 2) + pow(sumQ, 2));
 
-			cout << "Ic1 = " << Ic1 << " мА" << "\n";
+			cout << "\n" << "Ic1 = " << Ic1 << " мА" << "\n";
 			cout << "Ir1 = " << Ir1 << " мА" << "\n";
 			cout << "Il1 = " << Il1 << " мА" << "\n";
 			cout << "Ic2 = " << Ic2 << " мА" << "\n";
@@ -159,3 +171,4 @@ int main()
 		break;
 	}
 }
+
